@@ -1,15 +1,16 @@
 import pygame
 # config.py
 
+pygame.init()
+
 score_p1 = 0
 score_p2 = 0
 score_p3 = 0
 score_p4 = 0
 
 
-
 game_clock = pygame.time.Clock()
-player_size = 60
+player_size = 70
 
 # colours
 Black = (100, 45, 15)
@@ -82,3 +83,5 @@ score_p4_font = pygame.font.SysFont('IMPACT', 50)
 score_p4_text = score_p4_font.render('0', True, Redd)
 score_p4_text_rect = score_p4_text.get_rect()
 score_p4_text_rect.center = (1150, 30)
+
+background_option = 2
