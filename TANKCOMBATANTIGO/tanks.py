@@ -20,4 +20,4 @@ player_3_rect = player_3.get_rect()
 player_4 = pygame.image.load("Images/Player4 - Sprite.png")
 player_4_y = 650
 player_4_x = 80
-player_4_rect = player_4.get_rect()
+player_4_rect = player_4.get_rect() 
