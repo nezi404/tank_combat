@@ -1,181 +1,227 @@
+import config
 import tanks
 
+if config.background_option == 1:
 
-def detect_collision_player(player_x, player_y):
-    # Top Border Square
-    if 165 >= player_y >= 160 and 780 >= player_x >= 670:
-        player_y = 165
-    if player_y < 160 and 675 >= player_x >= 665:
-        player_x = 665
-    if player_y < 160 and 790 >= player_x >= 785:
-        player_x = 790
+    def detect_collision_player(player_x, player_y):
 
-    # Bottom Border Square
-    if 670 >= player_y >= 660 and 780 >= player_x >= 670:
-        player_y = 660
+        # Side Wall Left Collision
+        if 160 <= player_y <= 165 and 679 <= player_x <= 780:
+            player_y = 165
+        if player_y < 160 and 665 <= player_x <= 675:
+            player_x = 665
+        if player_y < 160 and 785 <= player_x <= 790:
+            player_x = 790
 
-    if 670 < player_y and 675 >= player_x >= 665:
-        player_x = 665
-    if 670 < player_y and 790 >= player_x >= 785:
-        player_x = 790
+        # Bottom Border Square
+        if 670 <= player_y and 670 <= player_x <= 780:
+            player_y = 660
 
-    # Top Left Curve
-    if 165 >= player_y >= 160 and 640 >= player_x >= 500:
-        player_y = 160
-    if 315 >= player_y > 160 and 505 >= player_x >= 500:
-        player_x = 500
-    if 315 >= player_y > 300 and 590 >= player_x >= 500:
-        player_y = 315
-    if 270 >= player_y > 260 and 650 >= player_x >= 500:
-        player_y = 270
-    if 315 >= player_y > 160 and 600 >= player_x >= 590:
-        player_x = 600
-    if 250 >= player_y > 160 and 650 >= player_x >= 640:
-        player_x = 650
+        if 670 < player_y and 675 >= player_x >= 665:
+            player_x = 665
+        if 670 < player_y and 790 >= player_x >= 785:
+            player_x = 790
 
-    # Top right Curve
-    if 165 >= player_y >= 160 and 950 >= player_x >= 810:
-        player_y = 160
-    if 250 >= player_y > 160 and 815 >= player_x >= 810:
-        player_x = 810
-    if 315 >= player_y > 300 and 950 >= player_x >= 885:
-        player_y = 315
-    if 270 >= player_y > 260 and 950 >= player_x >= 810:
-        player_y = 270
-    if 315 >= player_y > 160 and 970 >= player_x >= 960:
-        player_x = 970
-    if 315 >= player_y > 160 and 900 >= player_x >= 870:
-        player_x = 870
+        # Top Left Curve
 
-    # Bottom Left Corner
-    if 485 >= player_y > 480 and 590 >= player_x >= 490:
-        player_y = 480
-    if 635 >= player_y > 480 and 500 >= player_x >= 485:
-        player_x = 485
-    if 635 >= player_y >= 630 and 640 >= player_x >= 500:
-        player_y = 635
-    if 635 >= player_y > 530 and 650 >= player_x >= 640:
-        player_x = 650
-    if 535 >= player_y >= 530 and 640 >= player_x >= 500:
-        player_y = 530
-    if 635 >= player_y > 480 and 600 >= player_x >= 590:
-        player_x = 600
+        # Collision in the top
+        if 170 <= player_y <= 199 and 440 <= player_x <= 570:
+            player_y = 170
 
-    # Bottom Right Corner
-    if 485 >= player_y > 480 and 950 >= player_x >= 880:
-        player_y = 480
-    if 635 >= player_y > 480 and 970 >= player_x >= 965:
-        player_x = 970
-    if 635 >= player_y >= 630 and 950 >= player_x >= 810:
-        player_y = 635
-    if 635 >= player_y > 480 and 885 >= player_x >= 880:
-        player_x = 880
-    if 635 >= player_y > 530 and 815 >= player_x >= 810:
-        player_x = 810
-    if 525 >= player_y >= 520 and 950 >= player_x >= 810:
-        player_y = 520
+        # Collision in the left
+        if 200 <= player_y <= 325 and 425 <= player_x <= 439:
+            player_x = 425
 
-    # Mid-Left Square
-    if 485 >= player_y >= 355 and 305 >= player_x >= 300:
-        player_x = 300
-    if 485 >= player_y >= 355 and 425 >= player_x >= 420:
-        player_x = 425
-    if 350 >= player_y >= 345 and 425 >= player_x >= 300:
-        player_y = 345
-    if 490 >= player_y >= 485 and 425 >= player_x >= 300:
-        player_y = 490
+        # Collision in the bottom 1
+        if 330 <= player_y <= 350 and 440 <= player_x <= 510:
+            player_y = 350
 
-    # Mid-Right Square
-    if 485 >= player_y >= 355 and 1025 <= player_x <= 1030:
-        player_x = 1025
-    if 485 >= player_y >= 355 and 1155 <= player_x <= 1160:
-        player_x = 1160
-    if 350 >= player_y >= 345 and 1160 >= player_x >= 1025:
-        player_y = 345
-    if 490 >= player_y >= 485 and 1160 >= player_x >= 1025:
-        player_y = 490
+        # Collision in the bottom 2
+        if 290 <= player_y < 310 and 510 <= player_x <= 580:
+            player_y = 310
 
-    # Top Wall Left
-    if 205 >= player_y >= 110 and 180 <= player_x <= 185:
-        player_x = 180
-    if 205 >= player_y >= 200 and 180 <= player_x <= 330:
-        player_y = 205
-    if 205 >= player_y >= 110 and 325 <= player_x <= 330:
-        player_x = 330
-    if 105 >= player_y >= 100 and 180 <= player_x <= 330:
-        player_y = 100
+        # Collision in the right 1
+        if 185 <= player_y < 280 and 570 <= player_x <= 610:
+            player_x = 610
 
-    # Top Wall Right
-    if 205 >= player_y >= 110 and 1095 <= player_x <= 1105:
-        player_x = 1095
-    if 205 >= player_y >= 200 and 1095 <= player_x <= 1250:
-        player_y = 205
-    if 205 >= player_y >= 110 and 1230 <= player_x <= 1250:
-        player_x = 1250
-    if 105 >= player_y >= 100 and 1095 <= player_x <= 1250:
-        player_y = 100
+        # Collision in the right 2
+        if 325 >= player_y >= 290 and 540 >= player_x >= 500:
+            player_x = 540
 
+        # Top Right Curve
 
-    # Bottom-Left Wall
-    if 735 >= player_y >= 655 and 190 <= player_x <= 200:
-        player_x = 190
-    if 740 >= player_y >= 735 and 190 <= player_x <= 330:
-        player_y = 740
-    if 735 >= player_y >= 655 and 340 <= player_x <= 345:
-        player_x = 345
-    if 640 >= player_y >= 635 and 190 <= player_x <= 330:
-        player_y = 635
+        # Collision in the top
+        if 200 >= player_y >= 160 and 880 >= player_x >= 750:
+            player_y = 160
 
-    # Bottom-Right Wall
-    if 735 >= player_y >= 655 and 1095 <= player_x <= 1105:
-        player_x = 1095
-    if 740 >= player_y >= 735 and 1095 <= player_x <= 1250:
-        player_y = 740
-    if 735 >= player_y >= 655 and 1230 <= player_x <= 1250:
-        player_x = 1250
-    if 640 >= player_y >= 635 and 1095 <= player_x <= 1250:
-        player_y = 635
+        # Collision in the right
+        if 315 > player_y >= 200 and 890 >= player_x >= 870:
+            player_x = 890
 
-    # Left Barrier
-    if 250 <= player_y <= 590 and 85 <= player_x <= 90:
-        player_x = 80
-    if 250 <= player_y <= 590 and 160 <= player_x <= 175:
-        player_x = 175
-    if 250 <= player_y <= 340 and 25 <= player_x <= 30:
-        player_x = 25
-    if 500 <= player_y <= 590 and 25 <= player_x <= 30:
-        player_x = 25
-    if 240 <= player_y <= 245 and 25 <= player_x <= 155:
-        player_y = 240
-    if 310 <= player_y <= 345 and 25 <= player_x <= 155:
-        player_y = 345
-    if 595 <= player_y <= 605 and 25 <= player_x <= 155:
-        player_y = 605
-    if 495 <= player_y <= 500 and 25 <= player_x <= 155:
-        player_y = 495
+        # Collision in the left 1
+        if 315 - 50 >= player_y > 200 and 900 - 155 >= player_x >= 870 - 155:
+            player_x = 870 - 155
 
-    # Right Barrier
-    if 250 <= player_y <= 590 and 1070 <= player_x <= 1075:
-        player_x = 1070
+        # Collision in the left 2
+        if 325 >= player_y > 265 and 800 >= player_x >= 770:
+            player_x = 770
 
-    if 250 <= player_y <= 590 and 1180 <= player_x <= 1185:
-        player_x = 1185
-    if 250 <= player_y <= 340 and 1235 <= player_x <= 1260:
-        player_x = 1260
-    if 500 <= player_y <= 590 and 1235 <= player_x <= 1260:
-        player_x = 1260
-    if 235 <= player_y <= 240 and 1115 <= player_x <= 1230:
-        player_y = 235
-    if 595 <= player_y <= 610 and 1115 <= player_x <= 1260:
-        player_y = 610
-    if 340 <= player_y <= 345 and 1115 <= player_x <= 1260:
-        player_y = 345
-    if 495 <= player_y <= 500 and 1115 <= player_x <= 1260:
-        player_y = 495
+        # Collision in the bottom 1
+        if 295 >= player_y > 265 and 800 >= player_x >= 740:
+            player_y = 295
 
-    return player_x, player_y
+        # Collision in the bottom 2
+        if 340 >= player_y > 325 and 880 >= player_x >= 790:
+            player_y = 340
 
+        # Bottom Left Corner
+        if 485 >= player_y > 480 and 590 >= player_x >= 490:
+            player_y = 480
+        if 635 >= player_y > 480 and 500 >= player_x >= 485:
+            player_x = 485 - 100
+        if 635 >= player_y >= 630 and 640 >= player_x >= 500:
+            player_y = 635
 
+        if 635 >= player_y > 530 and 650 >= player_x >= 640:
+            player_x = 650 - 100
+
+        if 535 >= player_y >= 530 and 640 >= player_x >= 500:
+            player_y = 530
+        if 635 >= player_y > 480 and 600 >= player_x >= 590:
+            player_x = 600
+
+        # Bottom Right Corner
+        if 485 >= player_y > 480 and 950 >= player_x >= 880:
+            player_y = 480
+        if 635 >= player_y > 480 and 970 >= player_x >= 965:
+            player_x = 970
+        if 635 >= player_y >= 630 and 950 >= player_x >= 810:
+            player_y = 635
+        if 635 >= player_y > 480 and 885 >= player_x >= 880:
+            player_x = 880
+        if 635 >= player_y > 530 and 815 >= player_x >= 810:
+            player_x = 810
+        if 525 >= player_y >= 520 and 950 >= player_x >= 810:
+            player_y = 520
+
+        # Mid-Left Square  ***
+
+        # Collision in the left
+        if 440 >= player_y >= 340 and 265 >= player_x >= 200:
+            player_x = 200
+
+        # Collision in the right
+        if 440 >= player_y >= 340 and 355 >= player_x >= 340:
+            player_x = 355
+
+        # Collision in the top
+        if 300 >= player_y >= 295 and 325 >= player_x >= 225:
+            player_y = 295
+
+        # Collision in the bot
+        if 465 >= player_y >= 460 and 325 >= player_x >= 225:
+            player_y = 465
+
+        # Mid-Right Square
+        if 485 >= player_y >= 355 and 1025 <= player_x <= 1030:
+            player_x = 1025
+        if 485 >= player_y >= 355 and 1155 <= player_x <= 1160:
+            player_x = 1160
+        if 350 >= player_y >= 345 and 1160 >= player_x >= 1025:
+            player_y = 345
+        if 490 >= player_y >= 485 and 1160 >= player_x >= 1025:
+            player_y = 490
+        # Top Wall Left
+        if 205 >= player_y >= 110 and 180 <= player_x <= 185:
+            player_x = 180
+        if 205 >= player_y >= 200 and 180 <= player_x <= 330:
+            player_y = 205
+        if 205 >= player_y >= 110 and 325 <= player_x <= 330:
+            player_x = 330
+        if 105 >= player_y >= 100 and 180 <= player_x <= 330:
+            player_y = 100
+
+        # Top Wall Right
+        if 205 >= player_y >= 110 and 1095 <= player_x <= 1105:
+            player_x = 1095
+        if 205 >= player_y >= 200 and 1095 <= player_x <= 1250:
+            player_y = 205
+        if 205 >= player_y >= 110 and 1230 <= player_x <= 1250:
+            player_x = 1250
+        if 105 >= player_y >= 100 and 1095 <= player_x <= 1250:
+            player_y = 100
+
+        # Bottom-Left Wall
+        if 735 >= player_y >= 655 and 190 <= player_x <= 200:
+            player_x = 190
+        if 740 >= player_y >= 735 and 190 <= player_x <= 330:
+            player_y = 740
+        if 735 >= player_y >= 655 and 340 <= player_x <= 345:
+            player_x = 345
+        if 640 >= player_y >= 635 and 190 <= player_x <= 330:
+            player_y = 635
+
+        # Bottom-Right Wall
+        if 735 >= player_y >= 655 and 1095 <= player_x <= 1105:
+            player_x = 1095
+        if 740 >= player_y >= 735 and 1095 <= player_x <= 1250:
+            player_y = 740
+        if 735 >= player_y >= 655 and 1230 <= player_x <= 1250:
+            player_x = 1250
+        if 640 >= player_y >= 635 and 1095 <= player_x <= 1250:
+            player_y = 635
+
+        # Left Barrier  ***
+
+        # Collision in barrier inside
+        if 250 <= player_y <= 480 and 85 <= player_x <= 90:
+            player_x = 80
+
+        # Collision in barrier outside
+        if 240 <= player_y <= 570 and 165 <= player_x <= 185:
+            player_x = 185
+
+        # Collision in corner top left
+        if 240 <= player_y <= 270 and 15 <= player_x <= 70:
+            player_x = 15
+
+        # Collision in corner bot left
+        if 500 <= player_y <= 590 and 20 <= player_x <= 30:
+            player_x = 20
+
+        # Collision in corner top outside
+        if 200 <= player_y <= 245 and 30 <= player_x <= 155:
+            player_y = 200
+
+        # Collision in corner top inside
+        if 320 <= player_y <= 335 and 30 <= player_x <= 155:
+            player_y = 335
+
+        # Collision in corner bot outside
+        if 585 <= player_y <= 595 and 30 <= player_x <= 155:
+            player_y = 595
+        if 495 <= player_y <= 500 and 25 <= player_x <= 155:
+            player_y = 495
+
+        # Right Barrier
+        if 250 <= player_y <= 590 and 1070 <= player_x <= 1075:
+            player_x = 1070
+        if 250 <= player_y <= 590 and 1180 <= player_x <= 1185:
+            player_x = 1185
+        if 250 <= player_y <= 340 and 1235 <= player_x <= 1260:
+            player_x = 1260
+        if 500 <= player_y <= 590 and 1235 <= player_x <= 1260:
+            player_x = 1260
+        if 235 <= player_y <= 240 and 1115 <= player_x <= 1230:
+            player_y = 235
+        if 595 <= player_y <= 610 and 1115 <= player_x <= 1260:
+            player_y = 610
+        if 340 <= player_y <= 345 and 1115 <= player_x <= 1260:
+            player_y = 345
+        if 495 <= player_y <= 500 and 1115 <= player_x <= 1260:
+            player_y = 495
+
+        return player_x, player_y
 def detect_collision_ball1(ball_x, ball_y):
     import KOMBATTANK
 
@@ -348,6 +394,293 @@ def detect_collision_ball1(ball_x, ball_y):
         bounce1y()
 
     return ball_x, ball_y
+
+
+
+
+if config.background_option == 2:
+    def detect_collision_player(player_x, player_y):
+
+        # Left Barrier
+        if 250 <= player_y <= 590 and 85 <= player_x <= 90:
+            player_x = 80
+        if 250 <= player_y <= 590 and 160 <= player_x <= 175:
+            player_x = 175
+        if 250 <= player_y <= 340 and 25 <= player_x <= 30:
+            player_x = 25
+        if 500 <= player_y <= 590 and 25 <= player_x <= 30:
+            player_x = 25
+        if 240 <= player_y <= 245 and 25 <= player_x <= 155:
+            player_y = 240
+        if 310 <= player_y <= 345 and 25 <= player_x <= 155:
+            player_y = 345
+        if 595 <= player_y <= 605 and 25 <= player_x <= 155:
+            player_y = 605
+        if 495 <= player_y <= 500 and 25 <= player_x <= 155:
+            player_y = 495
+
+        # Right Barrier
+        if 250 <= player_y <= 590 and 1070 <= player_x <= 1075:
+            player_x = 1070
+        if 250 <= player_y <= 590 and 1180 <= player_x <= 1185:
+            player_x = 1185
+        if 250 <= player_y <= 340 and 1235 <= player_x <= 1260:
+            player_x = 1260
+        if 500 <= player_y <= 590 and 1235 <= player_x <= 1260:
+            player_x = 1260
+        if 235 <= player_y <= 240 and 1115 <= player_x <= 1230:
+            player_y = 235
+        if 595 <= player_y <= 610 and 1115 <= player_x <= 1260:
+            player_y = 610
+        if 340 <= player_y <= 345 and 1115 <= player_x <= 1260:
+            player_y = 345
+        if 495 <= player_y <= 500 and 1115 <= player_x <= 1260:
+            player_y = 495
+
+        # Upper rectangle
+        if 184 - config.player_size <= player_y <= 234 and 655 - config.player_size <= player_x <= 670 :
+            player_x = 655 - config.player_size
+        if 184 - config.player_size <= player_y <= 234 and 705 <= player_x <= 655 + config.player_size :
+            player_x = 705 + config.player_size
+        if 184 - config.player_size <= player_y <= 190 and 655 - config.player_size <= player_x <= 705:
+            player_y =180 - config.player_size
+        if  274<= player_y <=284 + config.background_option  and 655 - config.player_size <= player_x <=705 :
+            player_y =284
+
+        # Bottom rectangle
+
+        if 550 - config.player_size <= player_y <= 650 and 655 - config.player_size <= player_x <= 670 :
+            player_x = 655 - config.player_size
+        if 550 - config.player_size <= player_y <= 650 and 705 <= player_x <= 655 + config.player_size :
+            player_x = 705 + config.player_size
+        if 550 - config.player_size <= player_y <= 556 and 655 - config.player_size <= player_x <= 705:
+            player_y =550 - config.player_size
+        if 550 <= player_y <=650 + config.background_option  and 655 - config.player_size <= player_x <=705 :
+            player_y =650
+        return player_x, player_y
+
+
+    def detect_collision_ball1(ball_x, ball_y):
+        import KOMBATTANK
+         # Left Barrier
+        if 250 <= ball_y <= 590 and 85 <= ball_x <= 90:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 250 <= ball_y <= 590 and 160 <= ball_x <= 175:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 250 <= ball_y <= 340 and 25 <= ball_x <= 30:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 500 <= ball_y <= 590 and 25 <= ball_x <= 30:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 240 <= ball_y <= 245 and 25 <= ball_x <= 160:
+            if ball_y == config.bullet1_y:
+                bounce1y()
+            elif ball_y == config.bullet2_y:
+                bounce2y()
+            elif ball_y == config.bullet3_y:
+                bounce3y()
+            else:
+                bounce4y()
+        if 310 <= ball_y <= 345 and 25 <= ball_x <= 155:
+            if ball_y == config.bullet1_y:
+                bounce1y()
+            elif ball_y == config.bullet2_y:
+                bounce2y()
+            elif ball_y == config.bullet3_y:
+                bounce3y()
+            else:
+                bounce4y()
+        if 595 <= ball_y <= 605 and 25 <= ball_x <= 155:
+            if ball_y == config.bullet1_y:
+                bounce1y()
+            elif ball_y == config.bullet2_y:
+                bounce2y()
+            elif ball_y == config.bullet3_y:
+                bounce3y()
+            else:
+                bounce4y()
+        if 495 <= ball_y <= 500 and 25 <= ball_x <= 155:
+            if ball_y == config.bullet1_y:
+                bounce1y()
+            elif ball_y == config.bullet2_y:
+                bounce2y()
+            elif ball_y == config.bullet3_y:
+                bounce3y()
+            else:
+                bounce4y()
+
+        # Right Barrier
+        if 250 <= ball_y <= 590 and 1215 <= ball_x <= 1220:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 250 <= ball_y <= 590 and 1320 <= ball_x <= 1325:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 250 <= ball_y <= 340 and 1385 <= ball_x <= 1390:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 500 <= ball_y <= 590 and 1375 <= ball_x <= 1390:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 235 <= ball_y <= 240 and 1200 <= ball_x <= 1390:
+            if ball_y == config.bullet1_y:
+                bounce1y()
+            elif ball_y == config.bullet2_y:
+                bounce2y()
+            elif ball_y == config.bullet3_y:
+                bounce3y()
+            else:
+                bounce4y()
+        if 595 <= ball_y <= 600 and 1215 <= ball_x <= 1390:
+            bounce1y()
+        if 340 <= ball_y <= 345 and 1215 <= ball_x <= 1390:
+            if ball_y == config.bullet1_y:
+                bounce1y()
+            elif ball_y == config.bullet2_y:
+                bounce2y()
+            elif ball_y == config.bullet3_y:
+                bounce3y()
+            else:
+                bounce4y()
+        if 495 <= ball_y <= 500 and 1215 <= ball_x <= 1390:
+            if ball_y == config.bullet1_y:
+                bounce1y()
+            elif ball_y == config.bullet2_y:
+                bounce2y()
+            elif ball_y == config.bullet3_y:
+                bounce3y()
+            else:
+                bounce4y()
+
+        # Upper rectangle
+        if 184 <= ball_y <= 234 and 655 - config.player_size <= ball_x <= 670:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 184 - config.player_size <= ball_y <= 234 and 705 <= ball_x <= 655 + config.player_size:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 184 - config.player_size <= ball_y <= 190 and 655 - config.player_size <= ball_x <= 705:
+            if ball_y == config.bullet1_y:
+                bounce1y()
+            elif ball_y == config.bullet2_y:
+                bounce2y()
+            elif ball_y == config.bullet3_y:
+                bounce3y()
+            else:
+                bounce4y()
+        if 274 <= ball_y <= 284 + config.background_option and 655 - config.player_size <= ball_x <= 705:
+            if ball_y == config.bullet1_y:
+                bounce1y()
+            elif ball_y == config.bullet2_y:
+                bounce2y()
+            elif ball_y == config.bullet3_y:
+                bounce3y()
+            else:
+                bounce4y()
+
+        # Bottom rectangle
+
+        if 550 <= ball_y <= 650 and 655 <= ball_x <= 670:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 550 <= ball_y <= 650 and 705 <= ball_x <= 655:
+            if ball_y == config.bullet1_y:
+                bounce1x()
+            elif ball_y == config.bullet2_y:
+                bounce2x()
+            elif ball_y == config.bullet3_y:
+                bounce3x()
+            else:
+                bounce4x()
+        if 550 <= ball_y <= 556 and 655 <= ball_x <= 705:
+            if ball_y == config.bullet1_y:
+                bounce1y()
+            elif ball_y == config.bullet2_y:
+                bounce2y()
+            elif ball_y == config.bullet3_y:
+                bounce3y()
+            else:
+                bounce4y()
+        if 550 <= ball_y <= 650 and 655 <= ball_x <= 705:
+            if ball_y == config.bullet1_y:
+                bounce1y()
+            elif ball_y == config.bullet2_y:
+                bounce2y()
+            elif ball_y == config.bullet3_y:
+                bounce3y()
+            else:
+                bounce4y()
+        return ball_x, ball_y
+
 
 # makes sure the player won't go through the border
 def limit_borders_up(player1, walls, player2, walls2):
